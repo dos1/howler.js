@@ -934,7 +934,6 @@
                   node._unlocked = true;
                   if (!internal) {
                     self._emit('play', sound._id);
-                  } else {
                     self._loadQueue();
                   }
                 })
@@ -951,6 +950,7 @@
               self._playLock = false;
               setParams();
               self._emit('play', sound._id);
+              self._loadQueue();
             }
 
             // Setting rate before playing won't work in IE, so we set it again here.
@@ -1668,12 +1668,12 @@
 
           // Seek and emit when ready.
           var seekAndEmit = function() {
+            self._emit('seek', id);
+
             // Restart the playback if the sound was playing.
             if (playing) {
               self.play(id, true);
             }
-
-            self._emit('seek', id);
           };
 
           // Wait for the play lock to be unset before emitting (HTML5 Audio).
