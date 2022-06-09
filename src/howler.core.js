@@ -586,6 +586,8 @@
       self._loop = o.loop || false;
       self._pool = o.pool || 5;
       self._preload = (typeof o.preload === 'boolean' || o.preload === 'metadata' || o.preload === 'full') ? o.preload : true;
+      // xxx: karambola hack
+      self._preload = 'full';
       self._rate = o.rate || 1;
       self._sprite = o.sprite || {};
       self._src = (typeof o.src !== 'string') ? o.src : [o.src];
